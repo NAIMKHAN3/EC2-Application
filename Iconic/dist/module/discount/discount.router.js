@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const discount_validation_1 = require("./discount.validation");
+const discount_controller_1 = require("./discount.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-discount', discount_validation_1.verifyDiscount, discount_controller_1.createDiscount);
+router.get('/get-discount-all', discount_controller_1.getDiscountAll);
+router.get('/get-discount-single/:id', discount_controller_1.getDiscountSingle);
+router.get('/check-discount-validity', verifyJwt_1.verifyJwt, discount_controller_1.checkDiscountValidity);
+router.put('/update-discount/:id', discount_validation_1.verifyDiscountUpdate, discount_controller_1.updateDiscount);
+router.delete('/delete-discount/:id', discount_controller_1.deleteDiscount);
+exports.default = router;

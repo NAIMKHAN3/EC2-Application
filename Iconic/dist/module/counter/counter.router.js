@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const counter_validation_1 = require("./counter.validation");
+const counter_controller_1 = require("./counter.controller");
+const router = (0, express_1.Router)();
+router.post('/create-counter', counter_validation_1.verifyCounter, counter_controller_1.createCounter);
+router.put('/update-counter/:id', counter_validation_1.verifyCounterUpdate, counter_controller_1.updateCounter);
+router.get('/get-counter-all', counter_controller_1.getCounterAll);
+router.get('/get-counter-single/:id', counter_controller_1.getCounterSingle);
+router.delete('/delete-counter/:id', counter_controller_1.deleteCounter);
+exports.default = router;

@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const account_controller_1 = require("./account.controller");
+const verifyParams_1 = require("../../middleware/verifyParams");
+const account_valiation_1 = require("./account.valiation");
+const router = (0, express_1.Router)();
+router.post('/create-account', verifyJwt_1.verifyJwt, account_valiation_1.verifyAccount, account_controller_1.createAccount);
+router.get('/get-accounts-all', account_valiation_1.verifyAccountQuery, account_controller_1.getAccountsAll);
+router.get('/get-account-single/:id', verifyJwt_1.verifyJwt, account_controller_1.getAccountSingle);
+router.put('/update-account/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, account_valiation_1.verifyUpdateAccount, account_controller_1.updateAccount);
+router.delete('/delete-account/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, account_controller_1.deleteAccount);
+exports.default = router;

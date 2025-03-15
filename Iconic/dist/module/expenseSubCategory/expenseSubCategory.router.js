@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const verifyParams_1 = require("../../middleware/verifyParams");
+const expenseSubCategory_validation_1 = require("./expenseSubCategory.validation");
+const expenseSubCategory_controller_1 = require("./expenseSubCategory.controller");
+const router = (0, express_1.Router)();
+router.post('/create-expense-subcategory', verifyJwt_1.verifyJwt, expenseSubCategory_validation_1.verifyExpenseSubCategory, expenseSubCategory_controller_1.createExpenseSubCategory);
+router.get('/get-expense-subcategory-all', verifyJwt_1.verifyJwt, expenseSubCategory_controller_1.getExpenseSubCategoryAll);
+router.get('/get-expense-subcategory-single/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, expenseSubCategory_controller_1.getExpenseSubCategorySingle);
+router.put('/update-expense-subcategory/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, expenseSubCategory_validation_1.verifyExpenseSubCategoryUpdate, expenseSubCategory_controller_1.updateExpenseSubCategory);
+router.delete('/delete-expense-subcategory/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, expenseSubCategory_controller_1.deleteExpenseSubCategory);
+exports.default = router;

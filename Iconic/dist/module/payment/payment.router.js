@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const payment_controller_1 = require("./payment.controller");
+const router = (0, express_1.Router)();
+router.post("/instance/:id", payment_controller_1.paymentInstance);
+router.get("/webhook/:id", payment_controller_1.webhook);
+router.post("/refund-payment", payment_controller_1.refundPayment);
+router.get("/refund-payment-status/:id", payment_controller_1.refundPaymentStatus);
+exports.default = router;

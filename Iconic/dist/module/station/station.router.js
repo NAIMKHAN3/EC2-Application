@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const station_validation_1 = require("./station.validation");
+const station_controller_1 = require("./station.controller");
+const router = (0, express_1.Router)();
+router.post('/create-station', station_validation_1.verifyStation, station_controller_1.createStation);
+router.put('/update-station/:id', station_validation_1.verifyStationUpdate, station_controller_1.updateStation);
+router.get('/get-station-all', station_controller_1.getStationAll);
+router.get('/get-station-single/:id', station_controller_1.getStationSingle);
+router.delete('/delete-station/:id', station_controller_1.deleteStation);
+exports.default = router;

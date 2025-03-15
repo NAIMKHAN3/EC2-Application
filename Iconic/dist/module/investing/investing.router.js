@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const investing_validation_1 = require("./investing.validation");
+const investing_controller_1 = require("./investing.controller");
+const verifyParams_1 = require("../../middleware/verifyParams");
+const router = (0, express_1.Router)();
+router.post('/investing-in', verifyJwt_1.verifyJwt, investing_validation_1.verifyInvesting, investing_controller_1.createInvestingIn);
+router.post('/investing-out', verifyJwt_1.verifyJwt, investing_validation_1.verifyInvesting, investing_controller_1.createInvestingOut);
+router.get('/get-investing', verifyJwt_1.verifyJwt, investing_controller_1.getInvesting);
+router.put('/update-investing/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, investing_controller_1.createInvestingOut);
+router.delete('/delete-investing/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, investing_controller_1.deleteInvesting);
+exports.default = router;

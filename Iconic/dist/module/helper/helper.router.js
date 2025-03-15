@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const helper_validation_1 = require("./helper.validation");
+const helper_controller_1 = require("./helper.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-helper', verifyJwt_1.verifyJwt, helper_validation_1.verifyHelperReg, helper_controller_1.createHelper);
+router.get('/get-helper-all', helper_controller_1.getHelperAll);
+router.get('/get-helper-single/:id', helper_controller_1.getHelperSingle);
+router.put('/update-helper/:id', verifyJwt_1.verifyJwt, helper_validation_1.verifyHelperUpdate, helper_controller_1.updateHelper);
+router.delete('/delete-helper/:id', verifyJwt_1.verifyJwt, helper_controller_1.deleteHelper);
+exports.default = router;

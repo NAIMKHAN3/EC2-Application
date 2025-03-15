@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const fare_validation_1 = require("./fare.validation");
+const fare_controller_1 = require("./fare.controller");
+const router = (0, express_1.Router)();
+router.post('/create-fare', fare_validation_1.verifyFare, fare_controller_1.createFare);
+router.get('/get-fare-all', fare_controller_1.getFareAll);
+router.get('/get-fare-single/:id', fare_controller_1.getFareSingle);
+router.put('/update-fare/:id', fare_validation_1.verifyFareUpdate, fare_controller_1.updateFare);
+router.delete('/delete-fare/:id', fare_controller_1.deleteFare);
+exports.default = router;

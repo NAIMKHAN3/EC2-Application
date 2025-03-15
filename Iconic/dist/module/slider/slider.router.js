@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const slider_validation_1 = require("./slider.validation");
+const slider_controller_1 = require("./slider.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-slider', verifyJwt_1.verifyJwt, slider_validation_1.verifySlider, slider_controller_1.createSlider);
+router.put('/update-slider/:id', verifyJwt_1.verifyJwt, slider_validation_1.verifySlider, slider_controller_1.updateSlider);
+router.get('/get-slider-all', slider_controller_1.getSliderAll);
+router.get('/get-slider-single/:id', slider_controller_1.getSliderSingle);
+router.delete('/delete-slider/:id', verifyJwt_1.verifyJwt, slider_controller_1.deleteSlider);
+exports.default = router;

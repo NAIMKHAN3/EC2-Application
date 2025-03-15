@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const aboutUs_validation_1 = require("./aboutUs.validation");
+const aboutUs_controller_1 = require("./aboutUs.controller");
+const router = (0, express_1.Router)();
+router.post('/create-about-us', verifyJwt_1.verifyJwt, aboutUs_validation_1.verifyAboutUs, aboutUs_controller_1.createAboutUs);
+router.put('/update-about-us/:id', verifyJwt_1.verifyJwt, aboutUs_validation_1.verifyAboutUsUpdate, aboutUs_controller_1.updateAboutUs);
+router.get('/get-about-us-all', aboutUs_controller_1.getAboutUsAll);
+router.get('/get-about-us-single/:id', aboutUs_controller_1.getAboutUsSingle);
+router.delete('/delete-about-us/:id', verifyJwt_1.verifyJwt, aboutUs_controller_1.deleteAboutUs);
+exports.default = router;

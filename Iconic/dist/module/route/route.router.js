@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const route_validation_1 = require("./route.validation");
+const route_controller_1 = require("./route.controller");
+const router = (0, express_1.Router)();
+router.post('/create-route', route_validation_1.verifyRoute, route_controller_1.createRoute);
+router.put('/update-route/:id', route_validation_1.verifyRouteUpdate, route_controller_1.updateRoute);
+router.get('/get-route-all', route_controller_1.getRouteAll);
+router.get('/get-route-single/:id', route_controller_1.getRouteSingle);
+router.delete('/delete-route/:id', route_controller_1.deleteRoute);
+exports.default = router;

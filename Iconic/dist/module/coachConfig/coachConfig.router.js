@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const coachConfig_validation_1 = require("./coachConfig.validation");
+const coachConfig_controller_1 = require("./coachConfig.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-coach-config', coachConfig_validation_1.verifyCoachConfig, coachConfig_controller_1.createCoachConfig);
+router.put('/update-coach-config/:id', coachConfig_validation_1.verifyCoachConfigUpdate, coachConfig_controller_1.updateCoachConfig);
+router.get('/get-coach-config-all', coachConfig_controller_1.getCoachConfigAll);
+router.get('/get-coach-config-update', coachConfig_controller_1.getCoachConfigUpdate);
+router.get('/get-coach-list', coachConfig_validation_1.verifyCoachListGet, coachConfig_controller_1.getCoachList);
+router.get('/get-coach-list-today', verifyJwt_1.verifyJwt, coachConfig_controller_1.getTodayCoachList);
+router.get('/coach-report-supervisor/:id', verifyJwt_1.verifyJwt, coachConfig_controller_1.coachReportSuperVisor);
+router.get('/get-coach-config-single/:id', coachConfig_controller_1.getCoachConfigSingle);
+router.delete('/delete-coach-config/:id', coachConfig_controller_1.deleteCoachConfig);
+exports.default = router;

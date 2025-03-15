@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const cms_validation_1 = require("./cms.validation");
+const cms_controller_1 = require("./cms.controller");
+const router = (0, express_1.Router)();
+router.post('/create-cms', cms_validation_1.verifyCMS, cms_controller_1.createCMS);
+router.put('/update-cms/:id', cms_validation_1.verifyCMS, cms_controller_1.updateCMS);
+router.get('/get-cms-single', cms_controller_1.getCMS);
+router.delete('/delete-cms/:id', cms_controller_1.deleteCMS);
+exports.default = router;

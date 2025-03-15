@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const expense_validation_1 = require("./expense.validation");
+const expense_controller_1 = require("./expense.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-expense', verifyJwt_1.verifyJwt, expense_validation_1.verifyExpense, expense_controller_1.createExpense);
+router.put('/update-expense/:id', verifyJwt_1.verifyJwt, expense_validation_1.verifyExpenseUpdate, expense_controller_1.updateExpense);
+router.put('/authorize-expense/:id', verifyJwt_1.verifyJwt, expense_validation_1.verifyExpenseAuthorize, expense_controller_1.authorizeExpense);
+router.get('/get-expense-all', expense_controller_1.getExpenseAll);
+router.get('/get-expense-account-dashboard', expense_controller_1.getExpenseAccountsDashboard);
+router.get('/get-expense-single/:id', expense_controller_1.getExpenseSingle);
+router.delete('/delete-expense/:id', expense_controller_1.deleteExpense);
+exports.default = router;

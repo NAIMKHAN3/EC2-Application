@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const expenseCategory_validation_1 = require("./expenseCategory.validation");
+const expenseCategory_controller_1 = require("./expenseCategory.controller");
+const router = (0, express_1.Router)();
+router.post('/create-expense-category', expenseCategory_validation_1.verifyExpenseCategory, expenseCategory_controller_1.createExpenseCategory);
+router.put('/update-expense-category/:id', expenseCategory_validation_1.verifyExpenseCategoryUpdate, expenseCategory_controller_1.updateExpenseCategory);
+router.get('/get-expense-category-all', expenseCategory_controller_1.getExpenseCategoryAll);
+router.get('/get-expense-category-single/:id', expenseCategory_controller_1.getExpenseCategorySingle);
+router.delete('/delete-expense-category/:id', expenseCategory_controller_1.deleteExpenseCategory);
+exports.default = router;

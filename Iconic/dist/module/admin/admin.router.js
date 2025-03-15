@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const admin_controller_1 = require("./admin.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const admin_validation_1 = require("./admin.validation");
+const router = (0, express_1.Router)();
+router.get('/get-today-sales', admin_controller_1.getTodaySales);
+router.get('/find-due', verifyJwt_1.verifyJwt, admin_controller_1.currentDueVehicle);
+router.get('/trip-report', verifyJwt_1.verifyJwt, admin_controller_1.tripReport);
+router.get('/trip-wise-report', verifyJwt_1.verifyJwt, admin_controller_1.tripNumberWiseReport);
+router.get('/get-trip-number', verifyJwt_1.verifyJwt, admin_controller_1.getTripNumber);
+router.post('/due-payment', verifyJwt_1.verifyJwt, admin_validation_1.verifyPayment, admin_controller_1.duePayment);
+router.get('/user-wise-sales', admin_controller_1.userWiseSalesReport);
+router.get('/get-aggregation-accounts', verifyJwt_1.verifyJwt, admin_controller_1.getAggregationAccounts);
+exports.default = router;

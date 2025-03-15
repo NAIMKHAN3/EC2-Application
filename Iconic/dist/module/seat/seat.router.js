@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const seat_validation_1 = require("./seat.validation");
+const seat_controller_1 = require("./seat.controller");
+const router = (0, express_1.Router)();
+router.post('/create-seat', seat_validation_1.verifySeat, seat_controller_1.createSeat);
+router.put('/update-seat/:id', seat_validation_1.verifySeatUpdate, seat_controller_1.updateSeat);
+router.get('/get-seat-all', seat_controller_1.getSeatAll);
+router.get('/get-seat-single/:id', seat_controller_1.getSeatSingle);
+router.delete('/delete-seat/:id', seat_controller_1.deleteSeat);
+exports.default = router;

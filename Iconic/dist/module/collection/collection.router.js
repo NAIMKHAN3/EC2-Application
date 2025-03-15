@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const collection_validation_1 = require("./collection.validation");
+const collection_controller_1 = require("./collection.controller");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const router = (0, express_1.Router)();
+router.post('/create-collection', collection_validation_1.verifyCollection, collection_controller_1.createCollection);
+router.get('/get-collection-all', verifyJwt_1.verifyJwt, collection_controller_1.getCollectionAll);
+router.get('/get-collection-account-dashboard', collection_controller_1.getCollectionAccountsDashboard);
+router.get('/get-collection-single/:id', collection_controller_1.getCollectionSingle);
+router.put('/update-collection/:id', collection_validation_1.verifyCollection, collection_controller_1.updateCollection);
+router.put('/authorize-collection/:id', verifyJwt_1.verifyJwt, collection_validation_1.verifyCollectionAuthorize, collection_controller_1.authorizeCollection);
+router.delete('/delete-collection/:id', collection_controller_1.deleteCollection);
+exports.default = router;

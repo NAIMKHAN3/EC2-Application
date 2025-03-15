@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const permission_validation_1 = require("./permission.validation");
+const permission_controller_1 = require("./permission.controller");
+const router = (0, express_1.Router)();
+router.post('/create-permission', permission_validation_1.verifyPermission, permission_controller_1.createPermission);
+router.put('/update-permission/:id', permission_validation_1.verifyPermissionUpdate, permission_controller_1.updatePermission);
+router.get('/get-permission-all', permission_controller_1.getPermissionAll);
+router.get('/get-permission-single/:id', permission_controller_1.getPermissionSingle);
+router.delete('/delete-permission/:id', permission_controller_1.deletePermission);
+exports.default = router;

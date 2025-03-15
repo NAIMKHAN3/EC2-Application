@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const fuelCompany_validation_1 = require("./fuelCompany.validation");
+const fuelCompanay_controller_1 = require("./fuelCompanay.controller");
+const router = (0, express_1.Router)();
+router.post('/create-fuel-company', fuelCompany_validation_1.verifyFuelCompany, fuelCompanay_controller_1.createFuelCompany);
+router.get('/get-fuel-company-all', fuelCompanay_controller_1.getFuelCompanyAll);
+router.get('/get-fuel-company-single/:id', fuelCompanay_controller_1.getFuelCompanySingle);
+router.put('/update-fuel-company/:id', fuelCompany_validation_1.verifyFuelCompanyUpdate, fuelCompanay_controller_1.updateFuelCompany);
+router.delete('/delete-fuel-company/:id', fuelCompanay_controller_1.deleteFuelCompany);
+exports.default = router;

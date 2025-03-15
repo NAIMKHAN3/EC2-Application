@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const balanceTransfer_validation_1 = require("./balanceTransfer.validation");
+const balanceTransfer_controller_1 = require("./balanceTransfer.controller");
+const router = (0, express_1.Router)();
+router.post('/create-balance-transfer', balanceTransfer_validation_1.verifyBalanceTransfer, balanceTransfer_controller_1.createBalanceTransfer);
+router.get('/get-balance-transfer-all', balanceTransfer_controller_1.getBalanceTransfer);
+router.get('/get-balance-transfer-single/:id', balanceTransfer_controller_1.getBalanceTransferById);
+router.delete('/delete-balance-transfer/:id', balanceTransfer_controller_1.deleteBalanceTransfer);
+exports.default = router;

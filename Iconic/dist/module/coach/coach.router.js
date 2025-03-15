@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const coach_controller_1 = require("./coach.controller");
+const coach_validation_1 = require("./coach.validation");
+const router = (0, express_1.Router)();
+router.post('/create-coach', coach_validation_1.verifyCoach, coach_controller_1.createCoach);
+router.put('/update-coach/:id', coach_validation_1.verifyCoachUpdate, coach_controller_1.updateCoach);
+router.get('/get-coach-all', coach_controller_1.getCoachAll);
+router.get('/get-coach-single/:id', coach_controller_1.getCoachSingle);
+router.delete('/delete-coach-single/:id', coach_controller_1.deleteCoach);
+exports.default = router;

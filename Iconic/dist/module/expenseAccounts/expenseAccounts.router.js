@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const verifyJwt_1 = require("../../middleware/verifyJwt");
+const verifyParams_1 = require("../../middleware/verifyParams");
+const expenseAccounts_validation_1 = require("./expenseAccounts.validation");
+const expenseAccounts_controller_1 = require("./expenseAccounts.controller");
+const router = (0, express_1.Router)();
+router.post('/create-expense-accounts', verifyJwt_1.verifyJwt, expenseAccounts_validation_1.verifyExpenseAccounts, expenseAccounts_controller_1.createExpenseAccounts);
+router.get('/get-expense-accounts-all', verifyJwt_1.verifyJwt, expenseAccounts_controller_1.getExpenseAccountsAll);
+router.get('/expense-report', verifyJwt_1.verifyJwt, expenseAccounts_controller_1.expenseAccountsReport);
+router.get('/get-expense-accounts-single/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, expenseAccounts_controller_1.getExpenseAccountsById);
+router.delete('/delete-expense-accounts/:id', verifyParams_1.verifyParams, verifyJwt_1.verifyJwt, expenseAccounts_controller_1.deleteExpenseAccounts);
+exports.default = router;

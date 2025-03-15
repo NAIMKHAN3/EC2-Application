@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const vehicle_validation_1 = require("./vehicle.validation");
+const vehicle_controller_1 = require("./vehicle.controller");
+const router = (0, express_1.Router)();
+router.post('/create-vehicle', vehicle_validation_1.verifyVehicle, vehicle_controller_1.createVehicle);
+router.put('/update-vehicle/:id', vehicle_validation_1.verifyVehicleUpdate, vehicle_controller_1.updateVehicle);
+router.get('/get-vehicle-all', vehicle_controller_1.getVehicleAll);
+router.get('/get-vehicle-single/:id', vehicle_controller_1.getVehicleSingle);
+router.delete('/delete-vehicle/:id', vehicle_controller_1.deleteVehicle);
+exports.default = router;

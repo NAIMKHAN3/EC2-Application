@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const schedule_validation_1 = require("./schedule.validation");
+const schedule_controller_1 = require("./schedule.controller");
+const router = (0, express_1.Router)();
+router.post('/create-schedule', schedule_validation_1.verifySchedule, schedule_controller_1.createSchedule);
+router.put('/update-schedule/:id', schedule_validation_1.verifyScheduleUpdate, schedule_controller_1.updateSchedule);
+router.get('/get-schedule-all', schedule_controller_1.getScheduleAll);
+router.get('/get-schedule-single/:id', schedule_controller_1.getScheduleSingle);
+router.delete('/delete-schedule/:id', schedule_controller_1.deleteSchedule);
+exports.default = router;
